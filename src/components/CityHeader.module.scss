@@ -1,0 +1,12 @@
+.city {
+  text-align: center;
+  background-color: #6f317eb5;
+  border-bottom-left-radius: 10px; //make a variable
+  border-bottom-right-radius: 10px;
+  margin-bottom: 30px;
+  p {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #fff;
+    padding-block: 10px;
+  }
+}

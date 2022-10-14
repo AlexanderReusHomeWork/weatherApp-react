@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: linear-gradient(
+    117deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 0.7671218145461309) 78%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  background-attachment: fixed;
+  max-width: 1200px;
+  margin: 0 auto;
+}

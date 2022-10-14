@@ -1,0 +1,45 @@
+.today-forecast {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 40px;
+  padding-inline: 30px;
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &:hover {
+      border: #fff 1px solid;
+    }
+    span {
+      color: #fff;
+      font-size: 3rem;
+    }
+    img {
+      max-width: 100px;
+    }
+    p {
+      color: #fff;
+    }
+  }
+}
+@media (max-width: 801px) {
+  .today-forecast {
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 20px;
+    div {
+      margin-top: 20px;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .today-forecast {
+    grid-template-columns: repeat(2, 1fr);
+    div {
+      margin-inline: 10px;
+      p {
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialCityState = {};
+const initialCityState = [];
 
 const citySlice = createSlice({
   name: "city",
   initialState: initialCityState,
   reducers: {
-    getCity(state, action) {},
+    getCity(state, action) {
+      state.length = 0;
+      state.push(...action.payload);
+    },
   },
 });
 

@@ -10,7 +10,7 @@ const useCurrentPosition = function () {
     };
 
     const onError = () => {
-      console.log("error");
+      setCurrPosition(false);
     };
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
   }, []);

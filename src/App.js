@@ -15,8 +15,8 @@ function App() {
   console.log(citiesArray);
 
   const enteredCityCoords = {
-    latitude: citiesArray[0]?.geometry.lat,
-    longitude: citiesArray[0]?.geometry.lng,
+    latitude: citiesArray[0]?.geometry?.lat,
+    longitude: citiesArray[0]?.geometry?.lng,
   };
 
   const position = useCurrentPosition();
@@ -36,10 +36,14 @@ function App() {
     <div className="App">
       {/* <p style={{ color: "#fff" }}>{res?.cod}</p>{" "} */}
       {/* ? helped to fix crash when cod undefined during the first render */}
-      <CityHeader />
-      <SearchInput />
-      <TodayWeather />
-      <FutureWeatherContainer />
+      <CityHeader position={position} />
+      {position && (
+        <>
+          <SearchInput />
+          <TodayWeather />
+          <FutureWeatherContainer />
+        </>
+      )}
     </div>
   );
 }

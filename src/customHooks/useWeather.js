@@ -8,7 +8,7 @@ const useWeather = function ({ latitude, longitude }) {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        if (!latitude && !longitude) return; //helped to fix error with undefined lat and lon
+        if (!latitude && !longitude) return; //helped to fix error with undefined lat and lon and crashing
         const res = await fetch(
           `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&id=524901&appid=${API_KEY_WEATHER}&units=metric&cnt=6`
         );

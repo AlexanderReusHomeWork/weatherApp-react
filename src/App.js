@@ -12,7 +12,6 @@ import FutureWeatherContainer from "./components/FutureWeatherContainer";
 
 function App() {
   const citiesArray = useSelector((state) => state.city);
-  console.log(citiesArray);
 
   const enteredCityCoords = {
     latitude: citiesArray[0]?.geometry?.lat,

@@ -5,7 +5,6 @@ import classes from "./Locations.module.scss";
 
 const Locations = function ({ citiesDebounce, visibility, setVisibility }) {
   const dispatch = useDispatch();
-  console.log(citiesDebounce);
 
   const clickHandler = (e) => {
     const chosenLocation = e.target.textContent;
@@ -14,6 +13,7 @@ const Locations = function ({ citiesDebounce, visibility, setVisibility }) {
     );
     dispatch(cityCations.getCity(filteredCity));
     setVisibility(false);
+    citiesDebounce.length = 0;
   };
 
   const displayLocations = citiesDebounce.map((loc) => {

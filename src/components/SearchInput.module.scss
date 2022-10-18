@@ -15,7 +15,7 @@
       padding-inline: 15px;
       padding-block: 10px;
       font-size: clamp(1.2rem, 3vw, 1.5rem);
-      border-top-left-radius: 10px; //change to variables
+      border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
       border: none;
       &:focus {
@@ -24,7 +24,7 @@
     }
     button {
       border: none;
-      border-top-right-radius: 10px; //change to variables
+      border-top-right-radius: 10px;
       border-bottom-right-radius: 10px;
       font-size: 1.5rem;
       padding-inline: 10px;
@@ -38,44 +38,4 @@
       }
     }
   }
-  /*  &-locations {
-      width: 88%;
-      position: absolute;
-      background-color: #fff;
-      padding-inline: 15px;
-      padding-block: 10px;
-      border-bottom-right-radius: 10px;
-      border-bottom-left-radius: 10px;
-      max-width: 350px;
-      margin: 0 auto;
-      bottom: -91px;
-      overflow-y: scroll;
-      max-height: 100px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      &::-webkit-scrollbar {
-        width: 10px;
-      }
-      &::-webkit-scrollbar-track {
-        background-color: #fff;
-      }
-      &::-webkit-scrollbar-thumb {
-        background-color: #3a2cd1;
-        border-radius: 5px;
-      }
-      p {
-        cursor: pointer;
-        &:hover {
-          background-color: rgba(27, 98, 197, 0.512);
-        }
-      }
-    } */
-  /*   &-error {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: -30px;
-    } */
 }

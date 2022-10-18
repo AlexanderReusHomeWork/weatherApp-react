@@ -13,13 +13,9 @@ const SearchInput = function () {
   const [submitInput, setSubmitInput] = useState();
   const [inputDebounce, setInputDebounce] = useState();
   const [visibility, setVisibility] = useState(false);
-  const debounce = useDebounce(inputDebounce, 1000);
-  console.log(debounce);
-
-  console.log(inputDebounce);
-  console.log(submitInput);
-
   const dispatch = useDispatch();
+
+  const debounce = useDebounce(inputDebounce, 1000);
   const citiesSubmit = useCities(submitInput);
   const citiesDebounce = useCities(debounce);
 

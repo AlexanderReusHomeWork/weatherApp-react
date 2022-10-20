@@ -1,13 +1,13 @@
 import useCities from "../customHooks/useCities";
-import ErrorContainer from "./ErrorContainer";
+import ErrorContainer from "../components/ErrorContainer";
 import Locations from "./Locations";
 
 import classes from "./SearchInput.module.scss";
 import useDebounce from "../customHooks/useDebounce";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { cityCations } from "../store/slices/city-slice";
-import { errorActions } from "../store/slices/error-slice";
+import { cityCations } from "../redux/slices/city-slice";
+import { errorActions } from "../redux/slices/error-slice";
 
 const SearchInput = function () {
   const [submitInput, setSubmitInput] = useState();

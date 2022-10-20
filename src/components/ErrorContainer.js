@@ -1,7 +1,7 @@
 import classes from "./ErrorContainer.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { errorActions } from "../store/slices/error-slice";
+import { errorActions } from "../redux/slices/error-slice";
 
 const ErrorContainer = function () {
   const errMsg = useSelector((state) => state.error.errMsg);

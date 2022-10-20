@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { cityCations } from "../store/slices/city-slice";
-import Loader from "./Loader";
+import { cityCations } from "../redux/slices/city-slice";
+import Loader from "../components/Loader";
 import classes from "./Locations.module.scss";
 
 const Locations = function ({ citiesDebounce, visibility, setVisibility }) {

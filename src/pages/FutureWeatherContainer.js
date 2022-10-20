@@ -1,4 +1,4 @@
-import FutureWeatherCard from "./FutureWeatherCard";
+import FutureWeatherCard from "../components/FutureWeatherCard";
 
 import classes from "./FutureWeatherContainer.module.scss";
 import { useSelector } from "react-redux";

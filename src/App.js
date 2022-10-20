@@ -1,14 +1,14 @@
-import CityHeader from "./components/CityHeader";
-import SearchInput from "./components/SearchInput";
-import TodayWeather from "./components/TodayWeather";
+import CityHeader from "./pages/CityHeader";
+import SearchInput from "./pages/SearchInput";
+import TodayWeather from "./pages/TodayWeather";
+import FutureWeatherContainer from "./pages/FutureWeatherContainer";
 
 import "./App.module.scss";
 import useCurrentPosition from "./customHooks/useCurrentLocation";
 import useWeather from "./customHooks/useWeather";
 import { useDispatch, useSelector } from "react-redux";
-import { weatherActions } from "./store/slices/weather-slice";
+import { weatherActions } from "./redux/slices/weather-slice";
 import { useEffect } from "react";
-import FutureWeatherContainer from "./components/FutureWeatherContainer";
 
 function App() {
   const citiesArray = useSelector((state) => state.city);

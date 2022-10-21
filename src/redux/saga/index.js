@@ -23,6 +23,7 @@ export function* handleWeatherData({ payload }) {
 
 export function* handleCityData({ payload }) {
   try {
+    yield console.log(payload.city);
     const cities = yield call(getCityCoords, payload.city);
     yield put(getCitySuccess(cities));
 

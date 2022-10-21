@@ -17,6 +17,7 @@ const SearchInput = function () {
   const debounce = useDebounce(inputDebounce, 1000);
 
   useEffect(() => {
+    if (!debounce) return;
     dispatch(getCityTrigger({ city: debounce, eventType: "" }));
   }, [debounce, dispatch]);
 

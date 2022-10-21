@@ -29,7 +29,15 @@ function App() {
       {errorWeather && (
         <ErrorContainer type="weather" position={{ top: "10px" }} />
       )}
-      {isLoadingWeather && <Loader />}
+      {isLoadingWeather && (
+        <Loader
+          styles={{
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+          }}
+        />
+      )}
       {!isLoadingWeather && !errorWeather && (
         <>
           <CityHeader position={currentLocation} />{" "}

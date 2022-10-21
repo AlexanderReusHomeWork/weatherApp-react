@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import classes from "./Locations.module.scss";
 import { changeWeatherTrigger } from "../redux/slices/weather-slice";
+import { getCitySuccess } from "../redux/slices/city-slice";
 
 const Locations = function ({ visibility, setVisibility }) {
   const citiesList = useSelector((state) => state.city.cityData);
@@ -19,7 +20,7 @@ const Locations = function ({ visibility, setVisibility }) {
 
     dispatch(changeWeatherTrigger({ latitude: lat, longitude: lng }));
 
-    /* citiesList.length = 0; */
+    dispatch(getCitySuccess([]));
   };
 
   const displayLocations = citiesList.map((loc) => {

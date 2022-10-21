@@ -1,8 +1,8 @@
 import classes from "./Loader.module.scss";
 
-const Loader = function () {
+const Loader = function ({ styles }) {
   return (
-    <div className={classes["lds-ellipsis"]}>
+    <div style={styles} className={classes["lds-ellipsis"]}>
       <div></div>
       <div></div>
       <div></div>

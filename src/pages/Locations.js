@@ -1,22 +1,28 @@
-import { useDispatch } from "react-redux";
-import { cityCations } from "../redux/slices/city-slice";
+import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import classes from "./Locations.module.scss";
+import { changeWeatherTrigger } from "../redux/slices/weather-slice";
 
-const Locations = function ({ citiesDebounce, visibility, setVisibility }) {
+const Locations = function ({ visibility, setVisibility }) {
+  const citiesList = useSelector((state) => state.city.cityData);
+  console.log(citiesList);
   const dispatch = useDispatch();
 
   const clickHandler = (e) => {
+    setVisibility(false);
     const chosenLocation = e.target.textContent;
-    const filteredCity = citiesDebounce.filter(
+    const filteredCity = citiesList.filter(
       (elem) => elem.formatted === chosenLocation
     );
-    dispatch(cityCations.getCity(filteredCity));
-    setVisibility(false);
-    citiesDebounce.length = 0;
+
+    const { lat, lng } = filteredCity[0].geometry;
+
+    dispatch(changeWeatherTrigger({ latitude: lat, longitude: lng }));
+
+    /* citiesList.length = 0; */
   };
 
-  const displayLocations = citiesDebounce.map((loc) => {
+  const displayLocations = citiesList.map((loc) => {
     return (
       <p key={loc.formatted} onClick={clickHandler}>
         {loc.formatted}
@@ -29,7 +35,7 @@ const Locations = function ({ citiesDebounce, visibility, setVisibility }) {
       {visibility && (
         <div className={classes["locations"]}>
           {displayLocations}
-          {citiesDebounce.length === 0 && <Loader />}
+          {citiesList.length === 0 && <Loader />}
         </div>
       )}
     </>

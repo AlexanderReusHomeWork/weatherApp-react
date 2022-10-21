@@ -1,17 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialCityState = [];
+const initialCityState = {
+  cityData: [],
+  isLoading: false,
+  error: "",
+};
 
 const citySlice = createSlice({
   name: "city",
   initialState: initialCityState,
   reducers: {
-    getCity(state, action) {
+    getCityTrigger(state) {
+      state.isLoading = true;
+    },
+    getCityError(state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    getCitySuccess(state, action) {
       state.length = 0;
-      state.push(...action.payload);
+      state.cityData = [...action.payload];
+      state.isLoading = false;
+      state.error = "";
     },
   },
 });
 
-export const cityCations = citySlice.actions;
+export const { getCityTrigger, getCityError, getCitySuccess } =
+  citySlice.actions;
 export default citySlice.reducer;

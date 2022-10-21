@@ -4,9 +4,9 @@ import classes from "./FutureWeatherContainer.module.scss";
 import { useSelector } from "react-redux";
 
 const FutureWeatherContainer = function () {
-  const weather = useSelector((state) => state.weather);
+  const weather = useSelector((state) => state.weather.weatherData);
 
-  const displayList = weather.list?.map((elem, i) => {
+  const displayList = weather?.list?.map((elem, i) => {
     if (i === 0) return null;
     return (
       <FutureWeatherCard

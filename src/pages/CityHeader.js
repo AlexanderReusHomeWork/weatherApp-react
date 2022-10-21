@@ -1,7 +1,7 @@
 import classes from "./CityHeader.module.scss";
 import { useSelector } from "react-redux";
 const CityHeader = function ({ position }) {
-  const weather = useSelector((state) => state.weather);
+  const weather = useSelector((state) => state.weather.weatherData);
   return (
     <section className={classes["city"]}>
       {!position && (
@@ -11,7 +11,7 @@ const CityHeader = function ({ position }) {
       )}
       {position && (
         <p>
-          {weather.cityProp}, {weather.country}
+          {weather?.cityProp}, {weather?.country}
         </p>
       )}
     </section>

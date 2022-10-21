@@ -2,45 +2,44 @@ import CityHeader from "./pages/CityHeader";
 import SearchInput from "./pages/SearchInput";
 import TodayWeather from "./pages/TodayWeather";
 import FutureWeatherContainer from "./pages/FutureWeatherContainer";
+import Loader from "./components/Loader";
+import ErrorContainer from "./components/ErrorContainer";
+import useCurrentLocation from "./customHooks/useCurrentLocation";
+import { changeWeatherTrigger } from "./redux/slices/weather-slice";
 
 import "./App.module.scss";
-import useCurrentPosition from "./customHooks/useCurrentLocation";
-import useWeather from "./customHooks/useWeather";
+
 import { useDispatch, useSelector } from "react-redux";
-import { weatherActions } from "./redux/slices/weather-slice";
 import { useEffect } from "react";
 
 function App() {
-  const citiesArray = useSelector((state) => state.city);
+  const isLoadingWeather = useSelector((state) => state.weather.isLoading);
+  const errorWeather = useSelector((state) => state.weather.error);
+  console.log("App");
 
-  const enteredCityCoords = {
-    latitude: citiesArray[0]?.geometry?.lat,
-    longitude: citiesArray[0]?.geometry?.lng,
-  };
+  const currentLocation = useCurrentLocation();
 
-  const position = useCurrentPosition();
-  const weatherInitial = useWeather(position);
-  const enteredWeather = useWeather(enteredCityCoords);
   const dispatch = useDispatch();
-
   useEffect(() => {
-    //fix error cannot update component while other component updating
-    dispatch(weatherActions.changeWeather(weatherInitial));
-    if (enteredWeather) {
-      dispatch(weatherActions.changeWeather(enteredWeather));
-    }
-  }, [dispatch, weatherInitial, enteredWeather]);
+    dispatch(changeWeatherTrigger(currentLocation));
+  }, [dispatch, currentLocation]);
 
   return (
     <div className="App">
-      {/* <p style={{ color: "#fff" }}>{res?.cod}</p>{" "} */}
-      {/* ? helped to fix crash when cod undefined during the first render */}
-      <CityHeader position={position} />
-      {position && (
+      {errorWeather && (
+        <ErrorContainer type="weather" position={{ top: "10px" }} />
+      )}
+      {isLoadingWeather && <Loader />}
+      {!isLoadingWeather && !errorWeather && (
         <>
-          <SearchInput />
-          <TodayWeather />
-          <FutureWeatherContainer />
+          <CityHeader position={currentLocation} />{" "}
+          {currentLocation && (
+            <>
+              <SearchInput />
+              <TodayWeather />
+              <FutureWeatherContainer />
+            </>
+          )}
         </>
       )}
     </div>

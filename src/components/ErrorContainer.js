@@ -1,19 +1,23 @@
 import classes from "./ErrorContainer.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { errorActions } from "../redux/slices/error-slice";
+import { getCityError } from "../redux/slices/city-slice";
 
-const ErrorContainer = function () {
-  const errMsg = useSelector((state) => state.error.errMsg);
+const ErrorContainer = function ({ type, position }) {
+  const errorMessage = useSelector((state) => state[type].error);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (errMsg) {
+    if (errorMessage) {
       setTimeout(() => {
-        dispatch(errorActions.setMessage(""));
+        dispatch(getCityError(""));
       }, 2000);
     }
-  }, [dispatch, errMsg]);
+  }, [dispatch, errorMessage]);
 
-  return <p className={classes["errorMsg"]}>{errMsg}</p>;
+  return (
+    <p className={classes["errorMsg"]} style={position}>
+      {errorMessage}
+    </p>
+  );
 };
 export default ErrorContainer;

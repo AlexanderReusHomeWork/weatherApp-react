@@ -1,8 +1,11 @@
 import { useSelector } from "react-redux";
+import { IStoreState } from "../models/interfaces";
 import classes from "./TodayWeather.module.scss";
 
 const TodayWeather = function () {
-  const weather = useSelector((state) => state.weather.weatherData);
+  const weather = useSelector(
+    (state: IStoreState) => state.weather.weatherData
+  );
   return (
     <main className={classes["today-container"]}>
       <section className={classes["today-container-temp"]}>

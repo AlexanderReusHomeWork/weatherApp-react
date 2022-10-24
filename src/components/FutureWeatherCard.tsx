@@ -1,4 +1,12 @@
-const FutureWeatherCard = function ({ temp, icon, time }) {
+const FutureWeatherCard = function ({
+  temp,
+  icon,
+  time,
+}: {
+  temp: number;
+  icon: string;
+  time: string;
+}) {
   return (
     <div>
       <span style={temp > 20 ? { color: "#fc5353" } : { color: "#5f5ae4" }}>

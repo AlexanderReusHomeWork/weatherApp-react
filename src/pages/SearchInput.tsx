@@ -8,10 +8,11 @@ import classes from "./SearchInput.module.scss";
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { ERROR_COMPONENT_TYPE } from "../models/enums";
 
 const SearchInput = function () {
   const [visibility, setVisibility] = useState(false);
-  const [inputDebounce, setInputDebounce] = useState();
+  const [inputDebounce, setInputDebounce] = useState<undefined | string>();
   const dispatch = useDispatch();
 
   const debounce = useDebounce(inputDebounce, 1000);
@@ -21,17 +22,22 @@ const SearchInput = function () {
     dispatch(getCityTrigger({ city: debounce, eventType: "" }));
   }, [debounce, dispatch]);
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(getCityTrigger({ city: e.target[0].value, eventType: e.type }));
+    dispatch(
+      getCityTrigger({
+        city: (e.target[0] as HTMLFormElement).value,
+        eventType: e.type,
+      })
+    );
     setVisibility(false);
   };
 
-  const searchInputHandler = (e) => {
+  const searchInputHandler = (e: React.ChangeEvent) => {
     setVisibility(true);
-    setInputDebounce(e.target.value);
+    setInputDebounce((e.target as HTMLInputElement).value);
 
-    if (e.target.value === "") {
+    if ((e.target as HTMLInputElement).value === "") {
       setVisibility(false);
     }
   };
@@ -39,7 +45,7 @@ const SearchInput = function () {
   return (
     <>
       <form onSubmit={submitHandler} className={classes["search-form"]}>
-        <ErrorContainer type="city" />
+        <ErrorContainer type={ERROR_COMPONENT_TYPE.TYPE_CITY} />
         <div className={classes["search-form-container"]}>
           <input
             onChange={searchInputHandler}

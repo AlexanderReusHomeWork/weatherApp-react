@@ -2,9 +2,12 @@ import FutureWeatherCard from "../components/FutureWeatherCard";
 
 import classes from "./FutureWeatherContainer.module.scss";
 import { useSelector } from "react-redux";
+import { IStoreState } from "../models/interfaces";
 
 const FutureWeatherContainer = function () {
-  const weather = useSelector((state) => state.weather.weatherData);
+  const weather = useSelector(
+    (state: IStoreState) => state.weather.weatherData
+  );
 
   const displayList = weather?.list?.map((elem, i) => {
     if (i === 0) return null;

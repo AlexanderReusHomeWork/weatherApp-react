@@ -1,7 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IWeatherSlice } from "../../models/interfaces";
 
-const initialWeatherState = {
-  weatherData: {},
+const initialWeatherState: IWeatherSlice = {
+  weatherData: {
+    cityProp: "",
+    country: "",
+    currentTemp: 0,
+    feelsLike: 0,
+    humidity: 0,
+    pressure: 0,
+    visibility: 0,
+    windSpeed: 0,
+    weather: "",
+    description: "",
+    list: [],
+  },
   isLoading: false,
   error: "",
 };
@@ -10,7 +23,7 @@ const weatherSlice = createSlice({
   name: "weather",
   initialState: initialWeatherState,
   reducers: {
-    changeWeatherTrigger(state) {
+    changeWeatherTrigger(state, action) {
       state.isLoading = true;
     },
     changeWeatherError(state, action) {

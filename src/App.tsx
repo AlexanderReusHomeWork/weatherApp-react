@@ -11,10 +11,14 @@ import "./App.module.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { ERROR_COMPONENT_TYPE } from "./models/enums";
+import { IStoreState } from "./models/interfaces";
 
 function App() {
-  const isLoadingWeather = useSelector((state) => state.weather.isLoading);
-  const errorWeather = useSelector((state) => state.weather.error);
+  const isLoadingWeather = useSelector(
+    (state: IStoreState) => state.weather.isLoading
+  );
+  const errorWeather = useSelector((state: IStoreState) => state.weather.error);
   console.log("App");
 
   const currentLocation = useCurrentLocation();
@@ -27,7 +31,10 @@ function App() {
   return (
     <div className="App">
       {errorWeather && (
-        <ErrorContainer type="weather" position={{ top: "10px" }} />
+        <ErrorContainer
+          type={ERROR_COMPONENT_TYPE.TYPE_WEATHER}
+          position={{ top: "10px" }}
+        />
       )}
       {isLoadingWeather && (
         <Loader

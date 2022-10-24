@@ -3,15 +3,22 @@ import Loader from "../components/Loader";
 import classes from "./Locations.module.scss";
 import { changeWeatherTrigger } from "../redux/slices/weather-slice";
 import { getCitySuccess } from "../redux/slices/city-slice";
+import { IStoreState } from "../models/interfaces";
 
-const Locations = function ({ visibility, setVisibility }) {
-  const citiesList = useSelector((state) => state.city.cityData);
+const Locations = function ({
+  visibility,
+  setVisibility,
+}: {
+  visibility: boolean;
+  setVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  const citiesList = useSelector((state: IStoreState) => state.city.cityData);
   console.log(citiesList);
   const dispatch = useDispatch();
 
-  const clickHandler = (e) => {
+  const clickHandler = (e: React.MouseEvent) => {
     setVisibility(false);
-    const chosenLocation = e.target.textContent;
+    const chosenLocation = (e.target as HTMLParagraphElement).textContent;
     const filteredCity = citiesList.filter(
       (elem) => elem.formatted === chosenLocation
     );

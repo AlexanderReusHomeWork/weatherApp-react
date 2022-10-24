@@ -11,24 +11,36 @@ import {
   getCityError,
   getCitySuccess,
 } from "../slices/city-slice";
+import { ICity, IWeatherData } from "../../models/interfaces";
 
-export function* handleWeatherData({ payload }) {
+export function* handleWeatherData({
+  payload,
+}: {
+  payload: {
+    longitude: number;
+    latitude: number;
+  };
+}) {
   try {
-    const weather = yield call(getWeatherData, payload);
+    const weather: IWeatherData = yield call(getWeatherData, payload);
     yield put(changeWeatherSuccess(weather));
   } catch {
     yield put(changeWeatherError("Unable to load weather"));
   }
 }
 
-export function* handleCityData({ payload }) {
+export function* handleCityData({
+  payload,
+}: {
+  payload: { city: string; eventType: string };
+}) {
   try {
     yield console.log(payload.city);
-    const cities = yield call(getCityCoords, payload.city);
+    const cities: ICity[] = yield call(getCityCoords, payload.city);
     yield put(getCitySuccess(cities));
 
     if (payload.eventType === "submit") {
-      const searchInputCityWeather = yield call(getWeatherData, {
+      const searchInputCityWeather: IWeatherData = yield call(getWeatherData, {
         latitude: cities[0].geometry.lat,
         longitude: cities[0].geometry.lng,
       });

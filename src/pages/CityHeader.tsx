@@ -1,7 +1,11 @@
 import classes from "./CityHeader.module.scss";
 import { useSelector } from "react-redux";
-const CityHeader = function ({ position }) {
-  const weather = useSelector((state) => state.weather.weatherData);
+import { IStoreState } from "../models/interfaces";
+const CityHeader = function ({ position }: { position: any }) {
+  //position type????/
+  const weather = useSelector(
+    (state: IStoreState) => state.weather.weatherData
+  );
   return (
     <section className={classes["city"]}>
       {!position && (

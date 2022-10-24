@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { ICitySlice } from "../../models/interfaces";
 
-const initialCityState = {
+const initialCityState: ICitySlice = {
   cityData: [],
   isLoading: false,
   error: "",
@@ -10,7 +11,7 @@ const citySlice = createSlice({
   name: "city",
   initialState: initialCityState,
   reducers: {
-    getCityTrigger(state) {
+    getCityTrigger(state, action) {
       state.isLoading = true;
     },
     getCityError(state, action) {
@@ -18,7 +19,6 @@ const citySlice = createSlice({
       state.error = action.payload;
     },
     getCitySuccess(state, action) {
-      state.length = 0;
       state.cityData = [...action.payload];
       state.isLoading = false;
       state.error = "";

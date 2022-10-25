@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { IGeolocationPosition } from "../models/interfaces";
 
 const useCurrentPosition = function () {
   const [currPosition, setCurrPosition] = useState({});
 
   useEffect(() => {
-    const onSuccess = (position) => {
+    const onSuccess = (position: IGeolocationPosition<null | number>) => {
       const { latitude, longitude } = position.coords;
       setCurrPosition({ latitude, longitude });
     };
